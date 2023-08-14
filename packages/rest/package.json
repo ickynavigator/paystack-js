@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "ts-node ./src/play.ts"
+    "play": "ts-node ./src/play.ts"
   },
   "dependencies": {
     "ts-node": "^10.9.1"
