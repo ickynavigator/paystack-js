@@ -7,6 +7,8 @@ export type Exact<T, U, Y = true, N = false> = (<G>() => G extends T
   ? Y
   : N;
 
+export type BetterOmit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
 export type EmptyObject<X> = keyof X extends never ? true : false;
 
 export type IsRecordContainingAnyRequiredFields<T> = Exact<
@@ -81,7 +83,7 @@ export type ClassBuilder<
     { [key in keyof Endpoints]: EndpointMemberRelated }
   >,
   Endpoints extends EndpointMember,
-  _Base = Base,
+  _Base = Pick<Base, 'query'>,
 > = _Base & {
   [Tkey in keyof Endpoints]: (
     opts: OptionsExtract<Members[Tkey], Endpoints[Tkey]['path']>,
