@@ -2,8 +2,12 @@
   "name": "@package-js/rest",
   "version": "1.0.0",
   "private": true,
-  "scripts": {},
-  "dependencies": {},
+  "scripts": {
+    "start": "ts-node ./src/play.ts"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
+  },
   "devDependencies": {
     "eslint-config-custom": "*",
     "tsconfig": "*",
