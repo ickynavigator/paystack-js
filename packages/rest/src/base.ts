@@ -1,6 +1,6 @@
 import ApplePay from './endpoints/applePay';
-import Miscellaneous from './endpoints/miscellaneous';
-import SubAccounts from './endpoints/subAccounts';
+// import Miscellaneous from './endpoints/miscellaneous';
+// import SubAccounts from './endpoints/subAccounts';
 import { AcceptableMethods } from './types';
 
 /** @private NOT TO BE USED. USE THE ACTUAL `Paystack` CLASS */
@@ -10,10 +10,10 @@ class Base {
 
   /** The Apple Pay API allows you register your application's top-level domain or subdomain. */
   applePay = new ApplePay();
-  /** The Subaccounts API allows you create and manage subaccounts on your integration. Subaccounts can be used to split payment between two accounts (your main account and a sub account) */
-  subAccounts = new SubAccounts();
-  /** The Miscellaneous API are supporting APIs that can be used to provide more details to other APIs. */
-  miscellaneous = new Miscellaneous();
+  // /** The Subaccounts API allows you create and manage subaccounts on your integration. Subaccounts can be used to split payment between two accounts (your main account and a sub account) */
+  // subAccounts = new SubAccounts();
+  // /** The Miscellaneous API are supporting APIs that can be used to provide more details to other APIs. */
+  // miscellaneous = new Miscellaneous();
 
   setToken(token: string) {
     this.authToken = token;
@@ -26,6 +26,10 @@ class Base {
     options: Parameters,
   ) {
     console.log(this.authToken);
+    console.log('base:', base);
+    console.log('method:', method);
+    console.log('path:', path);
+    console.log('options:', options);
 
     return {} as Promise<Result>;
   }
