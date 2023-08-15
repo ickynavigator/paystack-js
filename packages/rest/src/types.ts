@@ -82,9 +82,15 @@ export type ClassBuilder<
   >,
   Endpoints extends EndpointMember,
 > = {
-  [Tkey in keyof Endpoints]: (
-    opts: OptionsExtract<Members[Tkey], Endpoints[Tkey]['path']>,
-  ) => Promise<Members[Tkey]['return']>;
+  [Tkey in keyof Endpoints]: IsRecordContainingAnyRequiredFields<
+    OptionsExtract<Members[Tkey], Endpoints[Tkey]['path']>
+  > extends true
+    ? (
+        opts?: OptionsExtract<Members[Tkey], Endpoints[Tkey]['path']>,
+      ) => Promise<Members[Tkey]['return']>
+    : (
+        opts: OptionsExtract<Members[Tkey], Endpoints[Tkey]['path']>,
+      ) => Promise<Members[Tkey]['return']>;
 };
 
 export type GroupDef<
