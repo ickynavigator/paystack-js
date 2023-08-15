@@ -1,11 +1,9 @@
-import Base from '../base';
-import { isEndpointKey } from '../helper';
 import {
   BaseReturn,
   ClassBuilder,
   EndpointMember,
   EndpointMemberParameters,
-  OptionsExtract,
+  GroupDef,
 } from '../types';
 
 const BASE_URL = `/apple-pay`;
@@ -67,29 +65,10 @@ export type Members = EndpointMemberParameters<
   }
 >;
 
-type ApplePay = ClassBuilder<Members, typeof members>;
-
-const ApplePay = class ApplePay extends Base {} as unknown as new (
-  ...args: ConstructorParameters<typeof Base>
-) => ApplePay;
-
-Object.keys(members).forEach(key => {
-  if (!isEndpointKey<keyof typeof members>(key)) return;
-
-  const current = members[key];
-
-  type Action = Members[typeof key];
-  type Opt = OptionsExtract<Action, typeof current.path>;
-  type Ret = Action['return'];
-
-  ApplePay.prototype[key] = async function (this: ApplePay, options: Opt) {
-    return this.query<Action, Opt, Ret>(
-      BASE_URL,
-      current.method,
-      current.path,
-      options,
-    );
-  };
-});
-
-export default ApplePay;
+const applePay: GroupDef<typeof members, Members> = {
+  group: 'applePay',
+  BASE_URL,
+  members,
+  builder: (a: Members, b: ClassBuilder<Members, typeof members>) => {},
+};
+export default applePay;

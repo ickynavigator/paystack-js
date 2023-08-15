@@ -1,5 +1,3 @@
-import Base from './base';
-
 //#region GENERAL HELPERS
 export type Exact<T, U, Y = true, N = false> = (<G>() => G extends T
   ? 1
@@ -83,11 +81,20 @@ export type ClassBuilder<
     { [key in keyof Endpoints]: EndpointMemberRelated }
   >,
   Endpoints extends EndpointMember,
-  _Base = Pick<Base, 'query'>,
-> = _Base & {
+> = {
   [Tkey in keyof Endpoints]: (
     opts: OptionsExtract<Members[Tkey], Endpoints[Tkey]['path']>,
   ) => Promise<Members[Tkey]['return']>;
+};
+
+export type GroupDef<
+  Member extends EndpointMember,
+  Members extends { [key in keyof Member]: EndpointMemberRelated },
+> = {
+  group: string;
+  BASE_URL: string;
+  members: Member;
+  builder: (a: Members, b: ClassBuilder<Members, Member>) => void;
 };
 //#endregion
 

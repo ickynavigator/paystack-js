@@ -1,13 +1,11 @@
-import Base from '../base';
-import { isEndpointKey } from '../helper';
 import { Metadata } from '../models';
 import {
   BaseReturn,
   ClassBuilder,
   EndpointMember,
   EndpointMemberParameters,
+  GroupDef,
   LooseString,
-  OptionsExtract,
 } from '../types';
 
 const BASE_URL = `/subaccount`;
@@ -117,32 +115,10 @@ export type Members = EndpointMemberParameters<
   }
 >;
 
-type SubAccounts = ClassBuilder<Members, typeof members>;
-
-const SubAccounts = class SubAccounts extends Base {} as unknown as new (
-  ...args: ConstructorParameters<typeof Base>
-) => SubAccounts;
-
-Object.keys(members).forEach(key => {
-  if (!isEndpointKey<keyof typeof members>(key)) return;
-
-  const current = members[key];
-
-  type Action = Members[typeof key];
-  type Opt = OptionsExtract<Action, typeof current.path>;
-  type Ret = Action['return'];
-
-  SubAccounts.prototype[key] = async function (
-    this: SubAccounts,
-    options: Opt,
-  ) {
-    return this.query<Action, Opt, Ret>(
-      BASE_URL,
-      current.method,
-      current.path,
-      options,
-    );
-  };
-});
-
-export default SubAccounts;
+const subAccounts: GroupDef<typeof members, Members> = {
+  group: 'subAccounts',
+  BASE_URL,
+  members,
+  builder: (a: Members, b: ClassBuilder<Members, typeof members>) => {},
+};
+export default subAccounts;

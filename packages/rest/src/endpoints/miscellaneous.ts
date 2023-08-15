@@ -1,13 +1,11 @@
-import Base from '../base';
-import { isEndpointKey } from '../helper';
 import { Metadata } from '../models';
 import {
   BaseReturn,
   ClassBuilder,
   EndpointMember,
   EndpointMemberParameters,
+  GroupDef,
   LooseString,
-  OptionsExtract,
   TightString,
 } from '../types';
 
@@ -76,32 +74,11 @@ export type Members = EndpointMemberParameters<
   }
 >;
 
-type Miscellaneous = ClassBuilder<Members, typeof members>;
+const miscellaneous: GroupDef<typeof members, Members> = {
+  group: 'miscellaneous',
+  BASE_URL,
+  members,
+  builder: (a: Members, b: ClassBuilder<Members, typeof members>) => {},
+};
 
-const Miscellaneous = class Miscellaneous extends Base {} as unknown as new (
-  ...args: ConstructorParameters<typeof Base>
-) => Miscellaneous;
-
-Object.keys(members).forEach(key => {
-  if (!isEndpointKey<keyof typeof members>(key)) return;
-
-  const current = members[key];
-
-  type Action = Members[typeof key];
-  type Opt = OptionsExtract<Action, typeof current.path>;
-  type Ret = Action['return'];
-
-  Miscellaneous.prototype[key] = async function (
-    this: Miscellaneous,
-    options: Opt,
-  ) {
-    return this.query<Action, Opt, Ret>(
-      BASE_URL,
-      current.method,
-      current.path,
-      options,
-    );
-  };
-});
-
-export default Miscellaneous;
+export default miscellaneous;
