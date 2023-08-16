@@ -32,7 +32,8 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "play": "ts-node ./src/play.ts",
-    "build": "tsup"
+    "build": "tsup",
+    "prepublish": "npm run build"
   },
   "dependencies": {},
   "devDependencies": {
