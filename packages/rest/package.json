@@ -1,7 +1,35 @@
 {
   "name": "@package-js/rest",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "Obi Fortune",
+    "email": "gabrielobi.of@gmail.com",
+    "url": "https://obifortune.com"
+  },
+  "description": "A simple Paystack SDK for Node.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ickynavigator/paystack-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ickynavigator/paystack-js/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./dist/index.esm.js": "./dist/index.esm.js",
+    "./dist/index.cjs.js": "./dist/index.cjs.js",
+    "./dist/index.d.ts": "./dist/index.d.ts"
+  },
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "play": "ts-node ./src/play.ts",
     "build": "tsup"
