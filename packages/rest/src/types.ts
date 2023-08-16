@@ -110,3 +110,10 @@ export type BaseReturn<Data extends Record<string, any> = never> = Prettify<
 >;
 export type DataReturn<Data extends any> = Prettify<{ data: Data }>;
 //#endregion
+
+//#region CLASS BASE
+export interface PaystackOptions {
+  /** Paystack API token */
+  token: string;
+}
+//#endregion
