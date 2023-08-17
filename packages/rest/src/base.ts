@@ -2,14 +2,14 @@ import { AcceptableMethods, PaystackOptions } from './types';
 
 export class Base {
   static BASE_URL = 'https://api.paystack.co';
-  private authToken: string;
+  private options: PaystackOptions;
 
   constructor(option: PaystackOptions) {
-    this.authToken = option.token;
+    this.options = option;
   }
 
   setToken(token: string) {
-    this.authToken = token;
+    this.options.token = token;
   }
 
   async query<Action, Parameters, Result>(
@@ -18,7 +18,7 @@ export class Base {
     path: string,
     options: Parameters,
   ) {
-    console.log(this.authToken);
+    console.table(this.options);
     console.log('base:', base);
     console.log('method:', method);
     console.log('path:', path);
