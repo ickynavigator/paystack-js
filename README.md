@@ -1,38 +1,18 @@
 # Paystack-js
 
-## What's inside?
+[![NPM](https://img.shields.io/npm/l/@paystack-js/rest)](https://github.com/ickynavigator/@paystack-js/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/@paystack-js/rest)](https://www.npmjs.com/package/@paystack-js/rest)
 
-This Turborepo includes the following packages/apps:
+Yet [ANOTHER](https://github.com/pariola/paystack) a new [Paystack](https://paystack.co/) API wrapper 😉
 
-### Apps and Packages
+<!-- ## Links -->
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `rest`: the SDK package
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+<!-- - [Documentation](https://paystack-js.com/) -->
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Packages
 
-### Utilities
+- [`@paystack-js/rest`](./packages/rest) – A simple Paystack SDK for Node.js
 
-This Turborepo has some additional tools already setup for you:
+## License
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-yarn build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-yarn dev
-```
+MIT
