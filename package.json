@@ -15,7 +15,7 @@
     "turbo": "latest"
   },
   "name": "paystack-js",
-  "packageManager": "yarn@3.6.1",
+  "packageManager": "yarn@1.22.19",
   "workspaces": [
     "packages/*"
   ]
