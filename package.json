@@ -8,16 +8,15 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@paystack-js/eslint-config-custom": "*",
     "@turbo/gen": "^1.9.7",
     "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
     "prettier": "^3.0.1",
     "turbo": "latest"
   },
   "name": "paystack-js",
   "packageManager": "yarn@3.6.1",
   "workspaces": [
-    "apps/*",
     "packages/*"
   ]
 }
